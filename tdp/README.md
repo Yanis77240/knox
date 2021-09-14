@@ -6,6 +6,7 @@
 mvn clean install \
   -Prelease \
   -Ppackage \
+  -Drat.numUnapprovedLicenses=1000 \
   -DskipTests \
   -Dmaven.javdoc.skip=true \
   -Dcheckstyle.skip=true \
