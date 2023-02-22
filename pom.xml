@@ -280,6 +280,14 @@
         <zookeeper.version>3.5.7</zookeeper.version>
     </properties>
 
+    <repositories>  
+        <repository>
+            <id>nexus</id>
+            <name>my Nexus</name>
+            <url>http://172.19.0.2:8081/repository/my-maven-test/</url>
+        </repository>
+    </repositories>
+
     <distributionManagement>
         <repository>
             <id>apache.releases.https</id>
@@ -367,11 +375,6 @@
                     <releases>
                         <enabled>true</enabled>
                     </releases>
-                </repository>
-                <repository>
-                    <id>nexus</id>
-                    <name>my Nexus</name>
-                    <url>http://172.19.0.2:8081/repository/my-maven-test/</url>
                 </repository>
             </repositories>
             <build>
