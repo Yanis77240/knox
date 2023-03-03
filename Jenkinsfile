@@ -22,6 +22,14 @@ pipeline {
                 '''
             }
         }
+        stage('Test') {
+            steps {
+                echo "Testing..."
+                sh '''
+                mvn clean test -Prelease -Ppackage -Drat.numUnapprovedLicenses=1000 -Dmaven.javdoc.skip=true -Dcheckstyle.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true --batch-mode -fae --fail-never
+                '''
+            }
+        }
         stage("Publish to Nexus Repository Manager") {
             steps {
                 echo "Deploy..."
