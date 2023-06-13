@@ -155,7 +155,7 @@
 
         <!-- Dependencies sorted alphabetically -->
         <distMgmtSnapshotsName>my nexus</distMgmtSnapshotsName>
-        <distMgmtSnapshotsUrl>http://172.19.0.2:8081/repository/my-maven-test/</distMgmtSnapshotsUrl>
+        <distMgmtSnapshotsUrl>http://10.110.4.212:8081/repository/my-maven-test/</distMgmtSnapshotsUrl>
         <apacheds.directory.api.version>2.0.0</apacheds.directory.api.version>
         <apacheds.directory.server.version>2.0.0.AM26</apacheds.directory.server.version>
         <apacheds-jdbm.version>2.0.0-M5</apacheds-jdbm.version>
@@ -282,8 +282,8 @@
     <repositories>  
         <repository>
             <id>nexus</id>
-            <name>my Nexus</name>
-            <url>http://172.19.0.2:8081/repository/my-maven-test/</url>
+            <name>${distMgmtSnapshotsName}</name>
+            <url>${distMgmtSnapshotsUrl}</url>
         </repository>
     </repositories>
 
@@ -295,8 +295,8 @@
         </repository>
         <snapshotRepository>
             <id>nexus</id>
-            <name>my nexus</name>
-            <url>http://172.19.0.2:8081/repository/my-maven-test/</url>
+            <name>${distMgmtSnapshotsName}</name>
+            <url>${distMgmtSnapshotsUrl}</url>
         </snapshotRepository>
     </distributionManagement>
 
