@@ -377,8 +377,8 @@
                 </repository>
                 <repository>
                     <id>nexus</id>
-                    <name>my Nexus</name>
-                    <url>http://172.19.0.2:8081/repository/my-maven-test/</url>
+                    <name>${distMgmtSnapshotsName}</name>
+                    <url>${distMgmtSnapshotsUrl}</url>
                 </repository>
             </repositories>
             <build>

@@ -36,14 +36,14 @@
 
     <properties>
         <distMgmtSnapshotsName>my nexus</distMgmtSnapshotsName>
-        <distMgmtSnapshotsUrl>http://172.19.0.2:8081/repository/my-maven-test/</distMgmtSnapshotsUrl>
+        <distMgmtSnapshotsUrl>http://10.110.4.212:8081/repository/my-maven-test/</distMgmtSnapshotsUrl>
     </properties>
 
     <distributionManagement>
         <snapshotRepository>
             <id>nexus</id>
-            <name>my Nexus</name>
-            <url>http://172.19.0.2:8081/repository/my-maven-test/</url>
+            <name>${distMgmtSnapshotsName}</name>
+            <url>${distMgmtSnapshotsUrl}</url>
         </snapshotRepository>
     </distributionManagement>
 
