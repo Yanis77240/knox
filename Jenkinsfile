@@ -25,13 +25,13 @@ podTemplate(containers: [
             stage('Test') {
                 echo "Testing.."
                 sh '''
-                mvn clean install --batch-mode
+                mvn clean install --batch-mode -Dsurefire.rerunFailingTestsCount=3
                 '''
             }
             stage('Deliver') {
                 echo "Deploy..."
                 withCredentials([usernamePassword(credentialsId: '4b87bd68-ad4c-11ed-afa1-0242ac120002', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                    sh 'mvn clean install --batch-mode -Dsurefire.rerunFailingTestsCount=3'
+                    sh 'mvn clean deploy -Prelease -Ppackage -Drat.numUnapprovedLicenses=1000 -DskipTests -Dmaven.javdoc.skip=true -Dcheckstyle.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true --batch-mode -fae'
                 }
             }
             stage("Publish tar.gz to Nexus") {
