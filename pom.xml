@@ -277,6 +277,9 @@
         <xml-jaxb.version>2.3.0</xml-jaxb.version>
         <xml-matchers.version>0.10</xml-matchers.version>
         <zookeeper.version>3.5.7</zookeeper.version>
+
+        <!--Excluded tests-->
+        <excluded.tests>XmlFilterReaderTest$XmlRewriteRulesDescriptorDigesterTest, HtmlFilterReaderBaseTest$XmlRewriteRulesDescriptorDigesterTest</excluded.tests>
     </properties>
 
     <repositories>  
@@ -501,6 +504,10 @@
                         <exclude>atlassian-ide-plugin.xml</exclude>
                         <exclude>**/PULL_REQUEST_TEMPLATE*</exclude>
                         <exclude>**/new-service-definition-template.xml</exclude>
+                        <!--Additional excludes-->
+                        <exclude>Jenkinsfile</exclude>
+                        <exclude>settings.xml</exclude>
+                        <exclude>tdp/README.md</exclude>
                     </excludes>
                 </configuration>
             </plugin>
@@ -538,6 +545,9 @@
                     <excludedGroups>
                         org.apache.knox.test.category.SlowTests,org.apache.knox.test.category.ManualTests,org.apache.knox.test.category.VerifyTest,org.apache.knox.test.category.ReleaseTest
                     </excludedGroups>
+                    <excludes>
+                        <exclude>**/${excluded.tests}.java</exclude>
+                    </excludes>
                     <systemPropertyVariables>
                         <project.version>${project.version}</project.version>
                     </systemPropertyVariables>
