@@ -25,7 +25,7 @@ podTemplate(containers: [
             stage('Test') {
                 echo "Testing.."
                 sh '''
-                mvn clean test -Prelease -Ppackage -Drat.numUnapprovedLicenses=1000 -Dmaven.javdoc.skip=true -Dcheckstyle.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true --batch-mode -fae --fail-never
+                mvn clean install --batch-mode
                 '''
             }
             stage('Deliver') {
