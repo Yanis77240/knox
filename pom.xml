@@ -279,7 +279,7 @@
         <zookeeper.version>3.5.7</zookeeper.version>
 
         <!--Excluded tests-->
-        <excluded.tests>XmlFilterReaderTest$XmlRewriteRulesDescriptorDigesterTest, HtmlFilterReaderBaseTest$XmlRewriteRulesDescriptorDigesterTest</excluded.tests>
+        <!--<excluded.tests>XmlFilterReaderTest$XmlRewriteRulesDescriptorDigesterTest, HtmlFilterReaderBaseTest$XmlRewriteRulesDescriptorDigesterTest</excluded.tests>-->
     </properties>
 
     <repositories>  
@@ -884,6 +884,15 @@
                     <includeTests>true</includeTests>
                     <linkXRef>false</linkXRef>
                     <targetJdk>1.8</targetJdk>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <aggregate>true</aggregate>
+                    <linkXRef>true</linkXRef>
                 </configuration>
             </plugin>
         </plugins>
