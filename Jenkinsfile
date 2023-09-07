@@ -29,7 +29,7 @@ podTemplate(containers: [
             stage ('Build') {
                 echo "Building.."
                 sh '''
-                mvn clean install -Prelease -Ppackage -Drat.numUnapprovedLicenses=1000 -DskipTests -Dmaven.javdoc.skip=true -Dcheckstyle.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true --batch-mode -fae
+                mvn clean install -Prelease -Ppackage -Drat.numUnapprovedLicenses=1000 -DskipTests -Dmaven.javdoc.skip=true -Dcheckstyle.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true --batch-mode -fae -Dstyle.color=never
                 '''
             }
             stage('Test') {
@@ -55,20 +55,10 @@ podTemplate(containers: [
                     }
                 }
             }
-            stage('Test') {
-                echo "Testing..."
-                withEnv(["number=${currentBuild.number}"]) {
-                    withCredentials([usernamePassword(credentialsId: '4b87bd68-ad4c-11ed-afa1-0242ac120002', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                        sh 'mvn clean install --batch-mode -Dsurefire.rerunFailingTestsCount=3 --fail-never'
-                        sh 'mvn surefire-report:report-only  -Daggregate=true'
-                        sh 'curl -v -u $user:$pass --upload-file target/site/surefire-report.html http://10.110.4.212:8081/repository/test-reports/knox/surefire-report-${number}.html'
-                    }
-                }
-            }
             stage('Deliver') {
                 echo "Deploy..."
                 withCredentials([usernamePassword(credentialsId: '4b87bd68-ad4c-11ed-afa1-0242ac120002', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                    sh 'mvn clean deploy -Prelease -Ppackage -Drat.numUnapprovedLicenses=1000 -DskipTests -Dmaven.javdoc.skip=true -Dcheckstyle.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true --batch-mode -fae -s settings.xml'
+                    sh 'mvn clean deploy -Prelease -Ppackage -Drat.numUnapprovedLicenses=1000 -DskipTests -Dmaven.javdoc.skip=true -Dcheckstyle.skip=true -Dfindbugs.skip=true -Dspotbugs.skip=true --batch-mode -fae -Dstyle.color=never -s settings.xml'
                 }
             }
             stage("Publish tar.gz to Nexus") {
